@@ -7,7 +7,7 @@ Avant de lancer le programme sur votre carte ESP:
 Puis téléversez le code
 
 ## Architecture :
- ![alt text](https://github.com/dmytrolutsyk/Electronique/blob/master/Image1.jpg) 
+ ![alt text](https://github.com/dmytrolutsyk/Electronique/blob/master/Image1.png) 
 
 ## Montage :
 
