@@ -1,6 +1,6 @@
 # Introduction
 API pour le projet d'électronique embarquée.  
-Voir le fichier DEPLOY.md pour mettre en place l'environnement de développement et déployer l'application sur [heroku](https://api-4moc-blindtest.herokuapp.com/).
+Voir le fichier DEPLOY.md pour mettre en place l'environnement de développement et déployer l'application sur [localhost](http://localhost:3000/).
 
 # Routes
  - Toutes les routes demandent un token dans l'url : https://api-4moc-blindtest.herokuapp.com?token=token/
@@ -13,15 +13,15 @@ Voir le fichier DEPLOY.md pour mettre en place l'environnement de développement
 ## THEME
 ### GetAll
 - méthode : GET
-- route : ['/weather'](https://api-4moc-blindtest.herokuapp.com/weather)
+- route : ['/weather'](http://localhost:3000/weather)
 
 ### GetLast
 - méthode : GET
-- route : ['/weather/last'](https://api-4moc-blindtest.herokuapp.com/weather/1)
+- route : ['/weather/last'](http://localhost:3000//weather/1)
 
 ### Create
 - méthode : POST
-- route : ['/weather'](https://api-4moc-blindtest.herokuapp.com/weather)
+- route : ['/weather'](http://localhost:3000/weather)
 - body : 
 ```
 "temperature": number,
