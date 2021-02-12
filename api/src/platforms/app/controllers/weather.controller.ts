@@ -3,6 +3,9 @@ import { inject, injectable } from "inversify";
 import { plainToClass } from "class-transformer";
 import { validate } from "class-validator";
 
+import ioserver, { Socket } from 'socket.io';
+import ioclient from 'socket.io-client';
+
 import { SHARED_TYPES } from "../../../ioc/types";
 import { IWeatherDAO } from "../../../definitions/dao";
 import { WeatherDTO } from '../../../definitions/dto';
@@ -29,16 +32,31 @@ export class WeatherController {
   }
 
   async getLast(req: Request, res: Response){
-    const id = req.params.id;
-    try {
+    const socketclient = ioclient('http://localhost:' + 3000);
+    socketclient.on('connect', async () => {
+      try {
         const weather = await this.weatherDAO.getLast();
         if(weather instanceof Error) throw weather;
         res.send(new Body(weather));
-    } 
-    catch(err) {
-      console.log(`- ${new Date() } ${err.message}`);
-      res.send(new Body(err.message, true));
-    }
+      } 
+      catch(err) {
+        console.log(`- ${new Date() } ${err.message}`);
+        res.send(new Body(err.message, true));
+      }
+
+      res.json({ data: 'just hi' });
+    });
+
+
+    // try {
+    //     const weather = await this.weatherDAO.getLast();
+    //     if(weather instanceof Error) throw weather;
+    //     res.send(new Body(weather));
+    // } 
+    // catch(err) {
+    //   console.log(`- ${new Date() } ${err.message}`);
+    //   res.send(new Body(err.message, true));
+    // }
   }
 
   async create(req: Request, res: Response) {
