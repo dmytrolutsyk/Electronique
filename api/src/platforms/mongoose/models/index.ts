@@ -1,0 +1,1 @@
+export { WeatherModel, IWeatherDocument } from './weather.model';

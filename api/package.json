@@ -1,0 +1,20 @@
+{
+  "name": "apitemperaturewebsocket",
+  "version": "1.0.0",
+  "description": "API pour le projet d'électronique embarquée",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/roseeDuMatin/apitemperaturewebsocket.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/roseeDuMatin/apitemperaturewebsocket/issues"
+  },
+  "homepage": "https://gitlab.com/roseeDuMatin/apitemperaturewebsocket#readme",
+  "dependencies": {}
+}
