@@ -6,6 +6,6 @@ Avant de lancer le programme sur votre carte ESP:
  
 Puis téléversez le code
 
-Regardez le montage dans le fichier : Montage_capteur_temp.jpg
+## Montage :
 
  ![alt text](https://github.com/dmytrolutsyk/Electronique/blob/master/Montage_capteur_temp.jpg) 
