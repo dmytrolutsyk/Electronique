@@ -1,20 +1,24 @@
 #include <Wire.h>
 #include <ESP8266WiFi.h>        // Include the Wi-Fi library
 #include <ESP8266WiFiMulti.h>
+#include <ESP8266HTTPClient.h>
+#include <ArduinoJson.h> // to serialize post data
 
 #include "DHT.h"
 
 #define DHTPIN D3
-#define DHTTYPE DHT11 
+#define DHTTYPE DHT11
+
 DHT dht(DHTPIN, DHTTYPE);
 
-const char* ssid     = "ESGI";
-const char* password = "Reseau-GES";
+const char* ssid     = "ESGI"; //wifi id
+const char* password = "Reseau-GES"; //w wifi password
 
-const char* host = "https://findandtrade.herokuapp.com";
-const uint16_t port = 80;
-
+//const char* host = "https://findandtrade.herokuapp.com/";
+//const uint16_t port = 80;
 const unsigned long long interval = 1000;
+
+HTTPClient http;
 
 void setup() {
   dht.begin();
@@ -33,6 +37,7 @@ void setup() {
     Serial.print(".");
   }
 
+
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
@@ -41,8 +46,7 @@ void setup() {
 }
 
 void loop() {
-
-    Serial.println("hello");
+  
     float humidity = dht.readHumidity();
     float temperature = dht.readTemperature();
 
@@ -53,60 +57,39 @@ void loop() {
     Serial.println(temperature);
     delay(interval);
 
-    Serial.print("connecting to ");
-    Serial.print(host);
-    Serial.print(':');
-    Serial.println(port);
-  
-    // Use WiFiClient class to create TCP connections
-    WiFiClient client;
-    if (!client.connect(host, port)) {
-      Serial.println("connection failed");
-      delay(5000);
-      return;
-    }
 
-  /*
-    // This will send a string to the server
-    Serial.println("sending data to server");
-    if (client.connected()) {
-      client.println("hello from ESP8266");
-    }
-  
-    // wait for data to be available
-    unsigned long timeout = millis();
-    while (client.available() == 0) {
-      if (millis() - timeout > 5000) {
-        Serial.println(">>> Client Timeout !");
-        client.stop();
-        delay(60000);
-        return;
-      }
-    }
-  
-    // Read all the lines of the reply from server and print them to Serial
-    Serial.println("receiving from remote server");
-    // not testing 'client.connected()' since we do not need to send data here
-    while (client.available()) {
-      char ch = static_cast<char>(client.read());
-      Serial.print(ch);
-    }*/
-    http.begin(host,port,url);
-    int httpCode = http.GET();
-    if (httpCode) {
-      if (httpCode == 200) {
+    http.begin("http://10.33.3.10:3000/weather");
+    //http.begin("https://findandtrade.herokuapp.com/users");
+    //http.begin("https://jsonplaceholder.typicode.com/users/1");
+    Serial.println("laaaaaaa");
+    http.addHeader("Content-Type", "application/json");
+    
+    DynamicJsonDocument doc(1024);
+    doc["humidity"] = humidity;
+    doc["temperature"]  = temperature;
+    String json;
+    serializeJson(doc, json);
+    int httpResponseCode = http.POST(json);
+    //int httpResponseCode = http.GET(); // get data on api
+      
+      if (httpResponseCode>0) {
+        Serial.print("HTTP Response code: ");
+        Serial.println(httpResponseCode);
         String payload = http.getString();
-        Serial.println("Domoticz response "); 
         Serial.println(payload);
       }
-    }
-  
+      else {
+        Serial.print("Error code: ");
+        Serial.println(httpResponseCode);
+      }
+      // Free resources
+      http.end();
+
     // Close the connection
     Serial.println();
     Serial.println("closing connection");
-    client.stop();
   
-    delay(300000); // execute once every 5 minutes, don't flood remote service
+    delay(30000); // execute once every 5 minutes, don't flood remote service
 
 
 }
