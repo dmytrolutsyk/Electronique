@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WeatherDTO = void 0;
 var class_validator_1 = require("class-validator");
 var WeatherDTO = /** @class */ (function () {
     function WeatherDTO() {

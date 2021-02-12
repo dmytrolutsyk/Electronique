@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WeatherModel = exports.WeatherSchema = void 0;
 var mongoose_1 = require("mongoose");
 var mongoose = require("mongoose");
 exports.WeatherSchema = new mongoose_1.Schema({
