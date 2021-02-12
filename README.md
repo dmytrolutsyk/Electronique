@@ -8,4 +8,4 @@ Puis téléversez le code
 
 Regardez le montage dans le fichier : Montage_capteur_temp.jpg
 
- ![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/Montage_capteur_temp.jpg) 
+ ![alt text](https://github.com/dmytrolutsyk/Electronique/blob/master/Montage_capteur_temp.jpg) 
