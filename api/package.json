@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --build tsconfig.json",
+    "start": "node ./dist/www.js",
     "dev": "tsc && node ./dist/www.js"
   },
   "repository": {

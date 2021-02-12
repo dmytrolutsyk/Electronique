@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.appModule = void 0;
 var express = require("express");
 var cors = require("cors");
 var bodyParser = require("body-parser");

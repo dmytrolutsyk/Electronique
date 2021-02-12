@@ -1,4 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.WeatherModel = void 0;
 var weather_model_1 = require("./weather.model");
-exports.WeatherModel = weather_model_1.WeatherModel;
+Object.defineProperty(exports, "WeatherModel", { enumerable: true, get: function () { return weather_model_1.WeatherModel; } });

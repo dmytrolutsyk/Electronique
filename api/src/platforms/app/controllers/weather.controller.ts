@@ -3,9 +3,9 @@ import { inject, injectable } from "inversify";
 import { plainToClass } from "class-transformer";
 import { validate } from "class-validator";
 
-import * as ioserver from 'socket.io';
-import  { Socket, io } from 'socket.io-client';
-import 'socket.io-client';
+// import * as ioserver from 'socket.io';
+// import  { Socket, io } from 'socket.io-client';
+// import 'socket.io-client';
 
 import { SHARED_TYPES } from "../../../ioc/types";
 import { IWeatherDAO } from "../../../definitions/dao";
@@ -42,8 +42,6 @@ export class WeatherController {
         console.log(`- ${new Date() } ${err.message}`);
         res.send(new Body(err.message, true));
       }
-
-      res.json({ data: 'just hi' });
   }
 
 
