@@ -53,6 +53,7 @@ var express_1 = require("express");
 var inversify_1 = require("inversify");
 var class_transformer_1 = require("class-transformer");
 var class_validator_1 = require("class-validator");
+require("socket.io-client");
 var types_1 = require("../../../ioc/types");
 var dto_1 = require("../../../definitions/dto");
 var definitions_1 = require("../../../definitions");
@@ -86,31 +87,39 @@ var WeatherController = /** @class */ (function () {
     };
     WeatherController.prototype.getLast = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, weather, err_2;
+            var weather, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        id = req.params.id;
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
+                        _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, this.weatherDAO.getLast()];
-                    case 2:
+                    case 1:
                         weather = _a.sent();
                         if (weather instanceof Error)
                             throw weather;
                         res.send(new definitions_1.Body(weather));
-                        return [3 /*break*/, 4];
-                    case 3:
+                        return [3 /*break*/, 3];
+                    case 2:
                         err_2 = _a.sent();
                         console.log("- " + new Date() + " " + err_2.message);
                         res.send(new definitions_1.Body(err_2.message, true));
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
+                        return [3 /*break*/, 3];
+                    case 3:
+                        res.json({ data: 'just hi' });
+                        return [2 /*return*/];
                 }
             });
         });
     };
+    // try {
+    //     const weather = await this.weatherDAO.getLast();
+    //     if(weather instanceof Error) throw weather;
+    //     res.send(new Body(weather));
+    // } 
+    // catch(err) {
+    //   console.log(`- ${new Date() } ${err.message}`);
+    //   res.send(new Body(err.message, true));
+    // }
     WeatherController.prototype.create = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var body, weatherDTO, errors, weather, err_3;

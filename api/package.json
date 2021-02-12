@@ -4,7 +4,8 @@
   "description": "API pour le projet d'électronique embarquée",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --build tsconfig.json",
+    "dev": "tsc && node ./dist/www.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,24 @@
     "url": "https://gitlab.com/roseeDuMatin/apitemperaturewebsocket/issues"
   },
   "homepage": "https://gitlab.com/roseeDuMatin/apitemperaturewebsocket#readme",
-  "dependencies": {}
+  "dependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/cors": "^2.8.9",
+    "@types/express": "^4.17.11",
+    "@types/mongoose": "^5.10.3",
+    "@types/socket.io": "^2.1.13",
+    "@types/socket.io-client": "^1.4.35",
+    "body-parser": "^1.19.0",
+    "class-transformer": "^0.3.2",
+    "class-validator": "^0.13.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "inversify": "^5.0.5",
+    "mongoose": "^5.11.15",
+    "reflect-metadata": "^0.1.13",
+    "socket.io": "^3.1.1",
+    "socket.io-client": "^3.1.1",
+    "tsc": "^1.20150623.0"
+  }
 }
