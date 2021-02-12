@@ -8,11 +8,11 @@
 #define DHTTYPE DHT11 
 DHT dht(DHTPIN, DHTTYPE);
 
-const char* ssid     = "dmytro";
-const char* password = "dmytroesgi";
+const char* ssid     = "ESGI";
+const char* password = "Reseau-GES";
 
-const char* host = "djxmmx.net";
-const uint16_t port = 17;
+const char* host = "https://findandtrade.herokuapp.com";
+const uint16_t port = 80;
 
 const unsigned long long interval = 1000;
 
@@ -65,7 +65,8 @@ void loop() {
       delay(5000);
       return;
     }
-  
+
+  /*
     // This will send a string to the server
     Serial.println("sending data to server");
     if (client.connected()) {
@@ -89,6 +90,15 @@ void loop() {
     while (client.available()) {
       char ch = static_cast<char>(client.read());
       Serial.print(ch);
+    }*/
+    http.begin(host,port,url);
+    int httpCode = http.GET();
+    if (httpCode) {
+      if (httpCode == 200) {
+        String payload = http.getString();
+        Serial.println("Domoticz response "); 
+        Serial.println(payload);
+      }
     }
   
     // Close the connection
